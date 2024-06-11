@@ -1,7 +1,8 @@
-﻿package com.marcos.Library.Models;
+package com.marcos.Library.Models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity()
@@ -17,9 +18,9 @@ public class Author {
     @Column(length = 30)
     private String name;
     
-    @Column()
+
     @OneToMany(mappedBy = "author")
-    private List<Book> books;
+    private List<Book> books = new ArrayList<Book>();
 
     public Author(Integer id, String name, List<Book> books) {
         this.id = id;

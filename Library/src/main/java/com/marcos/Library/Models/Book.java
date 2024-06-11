@@ -1,7 +1,8 @@
-﻿package com.marcos.Library.Models;
+package com.marcos.Library.Models;
 
-import com.marcos.Library.Models.Enum.Gender;
+import com.marcos.Library.Models.Enums.Gender;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "book")
@@ -27,8 +28,7 @@ public class Book {
     
     @Column(length = 255, nullable = false)
     private String description;
-    
-    @Column()
+
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
