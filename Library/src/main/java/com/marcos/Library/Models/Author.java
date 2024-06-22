@@ -1,5 +1,6 @@
 package com.marcos.Library.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class Author {
     @Column(length = 30)
     private String name;
     
-
     @OneToMany(mappedBy = "author")
     private List<Book> books = new ArrayList<Book>();
 
@@ -43,7 +43,8 @@ public class Author {
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    @JsonIgnore
     public List<Book> getBooks() {
         return books;
     }
