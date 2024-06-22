@@ -14,7 +14,7 @@ public class AuthorService {
     private AuthorRepository authorRepository;
     
     public Author GetByName(String name){
-        Optional<Author> author = this.authorRepository.findAuthorByNameAnd(name);
+        Optional<Author> author = this.authorRepository.findAuthorByName(name);
         return author.orElseThrow(() -> new RuntimeException("Author not found"));
     }
     
@@ -36,7 +36,7 @@ public class AuthorService {
         entityUpdatable.setName(entity.getName());
         return this.authorRepository.save(entityUpdatable);
     }
-    
+    @Transactional
     public void Delete(Integer id) {
         GetById(id);
         try{
