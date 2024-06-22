@@ -39,16 +39,20 @@ public class BookService {
     }
     
     @Transactional
-    public Book Create(Book entity){
+    public Book Create(Book entity) {
         Optional<Author> author = authorRepository.findAuthorByName(entity.getAuthor().getName());
         
-        if(author.isEmpty()){
-            this.authorRepository.save(entity.getAuthor());
+        if (author.isEmpty()) {
+            Author savedAuthor = authorRepository.save(entity.getAuthor());
+            entity.setAuthor(savedAuthor);
+        } else {
+            entity.setAuthor(author.get());
         }
         
         entity.setId(null);
-        return this.bookRepository.save(entity);
+        return bookRepository.save(entity);
     }
+
     
     @Transactional
     public Book Update(Book entity){
